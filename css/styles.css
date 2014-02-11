@@ -1,19 +1,29 @@
 /* For browsers */
 div {
-	border: 1px solid black;
+	border: 0px solid black;
+}
+
+body {
+	background-image: url('../images/backdrop.png');
 }
 
 .wrapper {
 	height: 100%;
 	width: 100%;
 	min-width: 900px;
+
 }
 
 .container {
 	height: 100%;
-	width: 75%;
+	width: 50%;
 	min-width: 500px;
 	margin: 0px auto;
+	border: 1px solid black;
+	border-radius: 15px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: white;
 }
 
 .title {
@@ -22,19 +32,19 @@ div {
 }
 
 .addItem {
-
+	text-align: center;
 }
 
 #item {
-
+	width: 200px;
 }
 
 #quantity {
-
+	width: 40px;
 }
 
 #price {
-
+	width: 70px;
 }
 
 #add {
@@ -92,5 +102,11 @@ div {
 .editable {
 	width: 50px;
 	min-width: 30px;
+	display: none;
+	text-align: center;
+}
+
+.num, .quant {
+	
 }
 
