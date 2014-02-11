@@ -1,0 +1,96 @@
+/* For browsers */
+div {
+	border: 1px solid black;
+}
+
+.wrapper {
+	height: 100%;
+	width: 100%;
+	min-width: 900px;
+}
+
+.container {
+	height: 100%;
+	width: 75%;
+	min-width: 500px;
+	margin: 0px auto;
+}
+
+.title {
+	text-align: center;
+	font-size: 30px;
+}
+
+.addItem {
+
+}
+
+#item {
+
+}
+
+#quantity {
+
+}
+
+#price {
+
+}
+
+#add {
+
+}
+
+
+.list {
+	height: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+}
+
+#listHeader {
+	display: inline-block;
+	width: 100%;
+}
+
+.listItem {
+	min-height: 30px;
+	display: block;;
+}
+
+.itemPrice, .itemQuantity, .itemTotal, .itemType {
+	float: left;
+	min-height: 30px;
+	min-width: 70px;
+	text-align: center;
+}
+
+.edit, .delete, .save {
+	float: right;
+	width: 100px;
+	text-align: center;
+	background-color: gray;
+	color: white;
+	margin-left: 2px;
+	height: 30px;
+}
+
+.save {
+	display: none;
+}
+
+.edit:hover, .delete:hover, .save:hover {
+	background-color: black;
+	cursor: pointer;
+}
+
+.total #allItemTotals {
+	display: inline;
+}
+
+.editable {
+	width: 50px;
+	min-width: 30px;
+}
+

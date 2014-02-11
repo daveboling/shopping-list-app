@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>The Shopping App</title>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.numeric.js"></script>
+	<script src="js/shop.js"></script>
+</head>
+<body>
+<div class="wrapper">
+	<div class= "container">
+		
+		<!-- Change this back before final, this is the test div -->
+		<div class="title">Debugger</div>
+
+		<div class="addItem">
+			<form>
+				Item: <input id="item" type="text" name="item" value="">
+				Quantity: <input id="quantity" type="text" name="quantity" value="">
+				Price: <input id="price" type="text" name="price" value="">
+				<input id="add" type="button" name="add" value="Add">
+			</form>
+		</div>
+
+		<div class="list">
+			<div id="listHeader">
+				<div class="itemPrice">Price</div>
+				<div class="itemQuantity">Quantity</div>
+				<div class="itemTotal">Total</div>
+				<div class="itemType">Item</div>
+			</div>
+
+			<div class="listItem">
+				Milk
+				<div class="itemPrice">3</div>
+				<div class="itemQuantity">3</div>
+				<div class="itemTotal">9.00</div>
+				<div class="delete">Delete</div>
+				<div class="edit">Edit</div>
+				<div class="save">Save</div>
+			</div>
+
+
+		</div>
+
+		<div class="total">
+			Total: <div id="allItemTotals"></div>
+		</div>
+
+	</div>
+</div>
+	
+</body>
+</html>
