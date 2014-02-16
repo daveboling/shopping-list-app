@@ -7,17 +7,14 @@ var price = $("#price");
 var input = $('.editable');
 var add = $("#add");
 var editable = $(".editable");
-
-//List Area
+var edit = $('.edit');
+var del = $('.delete');
 var list = $(".list");
-//var testDiv = $(".title"); //For debugging
 
 //Making Quantity, Price, Editable take only numbers
 //Uses jquery.numeric plugin to prevent text from being typed in the <input> fields
-editable.numeric();
 quantity.numeric();
 price.numeric();
-
 
 
 	//Add Button
@@ -58,6 +55,13 @@ price.numeric();
 		$(this).closest('.listItem').find('.delete').hide();
 		$(this).closest('.listItem').find('.save').show();
 
+		//Unbinds previous hover behavior if the program is in save mode. There is no need to see edit and delete buttons.
+		//Edit No Hover
+		$(this).closest('.listItem').unbind('mouseenter');
+
+		//Delete No Hover
+		$(this).closest('.listItem').unbind('mouseenter');
+
 
 		//Step 2
 		/* We're going to leave the original value in the <input>, so we need to save them before we clear 
@@ -85,7 +89,9 @@ price.numeric();
 		down the DOM! Meaning, we can get to .itemPrice from .listItem, but not any further. 
 		*/
 		$(this).closest('.listItem').children('.itemPrice').find('.editable').val(currentPrice).show();
+		$(this).closest('.listItem').children('.itemPrice').find('.editable').numeric(); //Makes to where only numbers can be entered
 		$(this).closest('.listItem').children('.itemQuantity').find('.editable').val(currentQuantity).show();
+		$(this).closest('.listItem').children('.itemQuantity').find('.editable').numeric(); //Makes to where only numbers can be entered
 
 		//Step 6 - Profit :)
 
@@ -94,14 +100,33 @@ price.numeric();
 	//Save Button
 	$(document).on('click', '.save', function () {
 
-		//Hide and show selected buttons
-		$(this).closest('.listItem').find('.edit').show();
-		$(this).closest('.listItem').find('.delete').show();
-		$(this).closest('.listItem').find('.save').hide();
-
 		//Hide the forms
 		$(this).closest('.listItem')
 		.find('.editable').hide();
+
+		//There are no events for dynamically created elements.
+		/* To explain, the code below is simply to show EDIT and DELETE upon hover, hide them when not hovering. 
+		Why doesn't the CSS handle this? This is because the DOM has already loaded. It knows about what is already
+		there, not what is going to be there in the future. So we must take steps to compensate for this in terms
+		of dynamically created events.
+		*/
+
+		//Edit Button Hover/Leave 
+		$(this).closest('.listItem').bind('mouseenter', function () {
+			$(this).closest('.listItem').find('.edit').show();
+		}).mouseleave(function (){
+			$(this).closest('.listItem').find('.edit').hide();
+		});
+
+		//Delete Button Hover/Leave
+		$(this).closest('.listItem').bind('mouseenter', function () {
+			$(this).closest('.listItem').find('.delete').show();
+		}).mouseleave(function (){
+			$(this).closest('.listItem').find('.delete').hide();
+		});
+
+		//Hide the Save button since we're done editing
+		$(this).closest('.listItem').find('.save').hide();
 
 		//Here, change() needs to be used to detect what has changed about the current form fields
 		//Since we are working with forms, we can use val() to get the values
@@ -110,13 +135,6 @@ price.numeric();
 		var oldItemTotal = +($(this).closest('.listItem').find('.itemTotal').text());
 		var newItemTotal = newPrice.val() * newQuantity.val();
 	
-
-		/* Note, I made the text() blank in these spans
-		   so that hide() wouldn't save the Save button
-		   to show blank text as if the span had been deleted.
-		*/
-
-
 		//New Price
 		$(this).closest('.listItem')
 		.find('.num')
@@ -137,6 +155,7 @@ price.numeric();
 
 
 	});
+
 
 function calcTotal() {
 	var overallTotal = 0;

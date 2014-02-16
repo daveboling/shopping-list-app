@@ -1,22 +1,33 @@
+@import url(http://fonts.googleapis.com/css?family=Gilda+Display);
+
 /* For browsers */
 div {
 	border: 0px solid black;
 }
 
 body {
-	background-image: url('../images/backdrop.png');
+	background-color: black;
+	font-family: 'Gilda Display', serif;;
+}
+
+input {
+	border: 1px solid gray;
+}
+
+input:hover {
+	border: 1px solid black;
 }
 
 .wrapper {
 	height: 100%;
 	width: 100%;
-	min-width: 900px;
+	min-width: 1100px;
 
 }
 
 .container {
 	height: 100%;
-	width: 50%;
+	width: 80%;
 	min-width: 500px;
 	margin: 0px auto;
 	border: 1px solid black;
@@ -29,51 +40,88 @@ body {
 .title {
 	text-align: center;
 	font-size: 30px;
+	margin-bottom: 75px;
+	padding-top: 25px;
 }
 
 .addItem {
 	text-align: center;
+	font-size: 30px;
 }
 
 #item {
-	width: 200px;
+	width: 350px;
+	height: 50px;
+	font-size: 30px;
 }
 
 #quantity {
-	width: 40px;
+	width: 60px;
+	height: 50px;
+	font-size: 30px;
 }
 
 #price {
-	width: 70px;
+	width: 150px;
+	height: 50px;
+	font-size: 30px;
 }
 
 #add {
-
+	width: 40%;
+	height: 70px;
+	border-radius: 2px;
+	font-size: 25px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
-
 
 .list {
 	height: 100%;
 	padding-top: 10px;
 	padding-bottom: 10px;
-
 }
 
 #listHeader {
 	display: inline-block;
 	width: 100%;
+	border-bottom: 1px solid black;
 }
 
 .listItem {
 	min-height: 30px;
-	display: block;;
+	display: block;
+	margin-top: 7px;
+	font-size: 30px;
+	text-align: left;
 }
 
+.listItem .edit, .listItem .delete {
+	display: none;
+}
+
+.listItem:hover .edit, .listItem:hover .delete {
+	display: inline-block;
+}
+
+/* Is a duplicate to add to dynamic events 
+   The hover events are handled in jQuery.
+*/
+.editAdd, .deleteAdd {
+	display: none;
+}
+
+.editHover, .deleteHover {
+	display: inline-block;
+}
 .itemPrice, .itemQuantity, .itemTotal, .itemType {
 	float: left;
 	min-height: 30px;
-	min-width: 70px;
+	min-width: 120px;
+	max-width: 120px;
 	text-align: center;
+	font-size: 30px;
+	overflow: hidden;
 }
 
 .edit, .delete, .save {
@@ -84,6 +132,9 @@ body {
 	color: white;
 	margin-left: 2px;
 	height: 30px;
+	border-radius: 5px;
+	padding-top: 5px;
+	font-size: 18px;
 }
 
 .save {
@@ -95,13 +146,23 @@ body {
 	cursor: pointer;
 }
 
+.total {
+	font-size: 50px;
+	text-align: center;
+	margin-top: 50px;
+	border-top: 1px solid black;
+}
+
 .total #allItemTotals {
 	display: inline;
+	font-size: 50px;
 }
 
 .editable {
-	width: 50px;
-	min-width: 30px;
+	width: 70px;
+	min-width: 70px;
+	height: 30px;
+	font-size: 20px;
 	display: none;
 	text-align: center;
 }
