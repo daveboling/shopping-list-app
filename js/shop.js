@@ -1,17 +1,26 @@
 $(document).ready( function (){
 
+
 /* HELP MENU */
 //bxslider for the top div
-$('.bxslider').bxSlider({
-  infiniteLoop: false,
+var slider;
+
+$(function () {
+
+slider = $('.bxslider').bxSlider({
+	infiniteLoop :  false,
+	preloadimages: 'all',
 });
 
 //Hides the help menu on initial load
-$('#helpToggle').closest('.container').find('.slideDown').hide();
+//$('#helpToggle').closest('.container').find('.slideDown').hide();
 
 //Toggles the help menu using slideToggle()
 $('#helpToggle').on('click', function(){
 	$(this).closest('.container').find('.slideDown').slideToggle('slow');
+	slider.reloadSlider();
+});
+
 });
 
 //end help menu
