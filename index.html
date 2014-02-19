@@ -1,19 +1,41 @@
+<!-- Author: Dave D. Boling
+	 Github: kadowki
+	 Github Repo: kadowki.github.io/shopping-list-app/
+-->
+
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>The Shopping App</title>
+	<title>Dave's Shopping App</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" href="css/jquery.bxslider.css"  />
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.numeric.js"></script>
+	<script src="js/jquery.bxslider.min.js"></script>
 	<script src="js/shop.js"></script>
 </head>
 <body>
 <div class="wrapper">
 	<div class= "container">
-		
-		<!-- Change this back before final, this is the test div -->
-		<div class="title">Dave's Shopping WebApp</div>
+	
+		<div class="help">
+			<div id="helpToggle"><a><img src="images/quest.jpg"/></a></div>
+			<div id="bag"><img src="images/bag.png"></img></div>
+		</div>
+
+		<div class="slideDown">
+			<ul class="bxslider">
+  				<li><img src="images/clip1.jpg" /></li>
+  				<li><img src="images/clip2.jpg" /></li>
+  				<li><img src="images/clip3.jpg" /></li>
+  				<li>A shopping list app by Dave Boling.<br /><br />Enjoy!</li>
+			</ul>
+		</div>
+
+		<div class="error">
+			Hey! You forgot to enter an item.
+		</div>
 
 		<div class="addItem">
 			<form>
@@ -26,17 +48,26 @@
 
 		<div class="list">
 			<div id="listHeader">
+				<div class="itemType">Item</div>
 				<div class="itemPrice">Price</div>
 				<div class="itemQuantity">Quantity</div>
 				<div class="itemTotal">Total</div>
 			</div>
 
 			<div class="listItem">
-				<span>Milk</span>
+
+
+				<div class="itemType">
+					<span class="type">Milk</span>
+					<input class='editable' input='text'>
+				</div>
+
+
 				<div class="itemPrice">
 					<span class="num">3</span>
 				<input class='editable' input='text'>
 				</div>
+
 
 				<div class="itemQuantity">
 					<span class="quant">3</span>
@@ -53,11 +84,11 @@
 		</div>
 
 		<div class="total">
-			Grand Total: <div id="allItemTotals"></div>
+			Grand Total: $<div id="allItemTotals"></div>
 		</div>
 
 	</div>
 </div>
-	
+
 </body>
 </html>

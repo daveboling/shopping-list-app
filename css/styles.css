@@ -6,7 +6,9 @@ div {
 }
 
 body {
-	background-color: black;
+	background-color: white;
+	background-image: url('../images/backdrop.png');
+	background-repeat: no-repeat;
 	font-family: 'Gilda Display', serif;;
 }
 
@@ -18,6 +20,21 @@ input:hover {
 	border: 1px solid black;
 }
 
+.error {
+	display: none;
+	background-color: rgba(0, 0, 0, 0.4);
+	width: 50%;
+	height: 30px;
+	color: white;
+	font-size: 30px;
+	text-align: center;
+	margin: 0px auto;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
 .wrapper {
 	height: 100%;
 	width: 100%;
@@ -25,19 +42,48 @@ input:hover {
 
 }
 
+#helpToggle {
+	float: right;
+}
+
+#helpToggle img {
+	border-radius: 10px;
+	width: 35px;
+	height: 35px;
+}
+
+#bag {
+	text-align: left;
+}
+
+.help {
+	text-decoration: none;
+	text-align: right;
+	font-size: 30px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	height: 130px;
+	border-radius: 10px;
+}
+
+.help a:hover {
+	cursor: pointer;
+}
+
+
 .container {
 	height: 100%;
 	width: 80%;
 	min-width: 500px;
 	margin: 0px auto;
 	border: 1px solid black;
-	border-radius: 15px;
+	border-radius: 5px;
 	padding-left: 5px;
 	padding-right: 5px;
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.8);
 }
 
-.title {
+.slideDown {
 	text-align: center;
 	font-size: 30px;
 	margin-bottom: 75px;
@@ -114,12 +160,22 @@ input:hover {
 .editHover, .deleteHover {
 	display: inline-block;
 }
-.itemPrice, .itemQuantity, .itemTotal, .itemType {
+
+
+.itemPrice, .itemQuantity, .itemTotal  {
 	float: left;
 	min-height: 30px;
 	min-width: 120px;
 	max-width: 120px;
 	text-align: center;
+	font-size: 30px;
+	overflow: hidden;
+}
+
+/* Unused */
+.itemType {
+	float: left;
+	width: 300px;
 	font-size: 30px;
 	overflow: hidden;
 }
@@ -167,7 +223,15 @@ input:hover {
 	text-align: center;
 }
 
-.num, .quant {
-	
+.itemType .editable {
+	width: 250px;
+	min-width: 250px;
+	height: 30px;
+	font-size: 20px;
+	display: none;
+	text-align: left;
 }
 
+.crossOut {
+	text-decoration: line-through;
+}

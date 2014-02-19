@@ -1,5 +1,23 @@
 $(document).ready( function (){
 
+/* HELP MENU */
+//bxslider for the top div
+$('.bxslider').bxSlider({
+  infiniteLoop: false,
+});
+
+//Hides the help menu on initial load
+$('#helpToggle').closest('.container').find('.slideDown').hide();
+
+//Toggles the help menu using slideToggle()
+$('#helpToggle').on('click', function(){
+	$(this).closest('.container').find('.slideDown').slideToggle('slow');
+});
+
+//end help menu
+
+
+
 //Form Area Variables
 var item = $("#item");
 var quantity = $("#quantity");
@@ -18,31 +36,53 @@ price.numeric();
 
 
 	//Add Button
-	$(add).on('click', function (){ 
+	$(add).on('click', function (){
 		//Gets the total so it can be added during the append with ease
 		var totalPandQ = price.val() * quantity.val();
 
 		//First, you need to check if the item is blank
 		//Default behavior will allow an item to added with a quantity of 1 and price of 0 in case the user doesn't know what the price is. (Good call Justin)
 		if (item.val() === "" || quantity.val() === ""){
+			$('.error').fadeIn(400);
 		}
 
 		//Else, add the stuff yo.
 		else {
+			$('.error').hide();
 			//Append it to the bottom of .list
-			list.append('<div class="listItem"> ' + item.val() + '<div class="itemPrice"><span class="num">'+ price.val() +'</span><input class="editable" input="text"></div><div class="itemQuantity"><span class="quant">'+ quantity.val() +'</span><input class="editable" input="text"></div><div class="itemTotal">' + totalPandQ + '</div><div class="delete">Delete</div><div class="edit">Edit</div><div class="save">Save</div></div>');
+			list.append('<div class="listItem"> <div class="itemType"><span class="type">' + item.val() + '</span><input class="editable" input="text"></div><div class="itemPrice"><span class="num">'+ price.val() +'</span><input class="editable" input="text"></div><div class="itemQuantity"><span class="quant">'+ quantity.val() +'</span><input class="editable" input="text"></div><div class="itemTotal">' + totalPandQ + '</div><div class="delete">Delete</div><div class="edit">Edit</div><div class="save">Save</div></div>');
 		}
+
+		//Clear old input
+		item.val('');
 
 		//Add up current total
 		calcTotal();
+	});
+
+	//If enter key is pressed, adds a click event so we don't have to repeat any code
+	$(document).on('keypress', function(e){
+		if(e.which == 13){
+			$(add).click();
+		}
 	});
 
 
 	/* Note: on(event, selector, object handler) */
 	//Delete Button
 	$(document).on('click', '.delete', function () {
-		$(this).closest('.listItem').remove();
-		calcTotal();
+		$(this).closest('.listItem').queue(function() {
+			$(this).find('.itemType').css('text-decoration', 'line-through');
+			$(this).dequeue();
+		}).queue(function () {
+			$(this).fadeOut(500);
+			$(this).dequeue();
+		}).queue(function () {
+			$(this).remove();
+			$(this).dequeue();
+			calcTotal();
+		});	
+		
 	});
 
 
@@ -71,6 +111,7 @@ price.numeric();
 		*/
 		var currentPrice = +($(this).closest('.listItem').find('.num').text());
 		var currentQuantity = +($(this).closest('.listItem').find('.quant').text());
+		var currentItem = $(this).closest('.listItem').find('.type').text();
 
 		//Step 3
 		/*Now we can clear the text to make it appear as if it were hidden, but it's not. Why didn't I use hide() you ask?
@@ -79,6 +120,7 @@ price.numeric();
 		react properly in updating the <span> tag in the price and quantity.*/
 		$(this).closest('.listItem').find('.num').text('');
 		$(this).closest('.listItem').find('.quant').text('');
+		$(this).closest('.listItem').find('.type').text('');
 
 
 		//Step 5
@@ -92,6 +134,8 @@ price.numeric();
 		$(this).closest('.listItem').children('.itemPrice').find('.editable').numeric(); //Makes to where only numbers can be entered
 		$(this).closest('.listItem').children('.itemQuantity').find('.editable').val(currentQuantity).show();
 		$(this).closest('.listItem').children('.itemQuantity').find('.editable').numeric(); //Makes to where only numbers can be entered
+		$(this).closest('.listItem').children('.itemType').find('.editable').val(currentItem).show();
+
 
 		//Step 6 - Profit :)
 
@@ -132,6 +176,7 @@ price.numeric();
 		//Since we are working with forms, we can use val() to get the values
 		var newPrice = $(this).closest('.listItem').find('.itemPrice input').change();
 		var newQuantity = $(this).closest('.listItem').find('.itemQuantity input').change();
+		var newItem = $(this).closest('.listItem').find('.itemType input').change();
 		var oldItemTotal = +($(this).closest('.listItem').find('.itemTotal').text());
 		var newItemTotal = newPrice.val() * newQuantity.val();
 	
@@ -149,6 +194,11 @@ price.numeric();
 		$(this).closest('.listItem')
 		.find('.itemTotal')
 		.html(newItemTotal);
+
+		//New Item
+		$(this).closest('.listItem')
+		.find('.type')
+		.text(newItem.val());
 
 		//Add total
 		calcTotal();
