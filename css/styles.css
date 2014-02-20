@@ -137,7 +137,7 @@ input:hover {
 
 .listItem {
 	min-height: 30px;
-	display: block;
+	display: table;
 	margin-top: 7px;
 	font-size: 30px;
 	text-align: left;
@@ -150,18 +150,6 @@ input:hover {
 .listItem:hover .edit, .listItem:hover .delete {
 	display: inline-block;
 }
-
-/* Is a duplicate to add to dynamic events 
-   The hover events are handled in jQuery.
-*/
-.editAdd, .deleteAdd {
-	display: none;
-}
-
-.editHover, .deleteHover {
-	display: inline-block;
-}
-
 
 .itemPrice, .itemQuantity, .itemTotal  {
 	float: left;
@@ -177,6 +165,7 @@ input:hover {
 .itemType {
 	float: left;
 	width: 300px;
+	max-width: 300px;
 	font-size: 30px;
 	overflow: hidden;
 }
